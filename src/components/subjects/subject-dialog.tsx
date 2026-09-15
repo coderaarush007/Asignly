@@ -16,9 +16,10 @@ import type { Subject } from "@/lib/types";
 
 interface SubjectDialogProps {
   subject?: Subject;
+  onCreated?: (subject: Subject) => void;
 }
 
-export const SubjectDialog = forwardRef<DialogHandle, SubjectDialogProps>(({ subject }, ref) => {
+export const SubjectDialog = forwardRef<DialogHandle, SubjectDialogProps>(({ subject, onCreated }, ref) => {
   const router = useRouter();
   const isEdit = Boolean(subject);
   const [formError, setFormError] = useState<string | null>(null);
@@ -46,7 +47,10 @@ export const SubjectDialog = forwardRef<DialogHandle, SubjectDialogProps>(({ sub
     }
     toast.success(isEdit ? "Subject updated." : "Subject created.");
     (ref as React.RefObject<DialogHandle>).current?.close();
-    if (!isEdit) reset({ name: "", color: DEFAULT_SUBJECT_COLOR });
+    if (!isEdit) {
+      reset({ name: "", color: DEFAULT_SUBJECT_COLOR });
+      if (result.subject) onCreated?.(result.subject);
+    }
     router.refresh();
   }
 

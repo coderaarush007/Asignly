@@ -3,9 +3,11 @@
 import { createClient } from "@/lib/supabase/server";
 import { subjectFormSchema } from "@/lib/validation/subject";
 import { revalidatePath } from "next/cache";
+import type { Subject } from "@/lib/types";
 
 export interface ActionResult {
   error: string | null;
+  subject?: Subject;
 }
 
 export async function createSubjectAction(input: unknown): Promise<ActionResult> {
@@ -18,16 +20,20 @@ export async function createSubjectAction(input: unknown): Promise<ActionResult>
   } = await supabase.auth.getUser();
   if (!user) return { error: "Not authenticated" };
 
-  const { error } = await supabase.from("subjects").insert({
-    user_id: user.id,
-    name: parsed.data.name,
-    color: parsed.data.color,
-  });
+  const { data, error } = await supabase
+    .from("subjects")
+    .insert({
+      user_id: user.id,
+      name: parsed.data.name,
+      color: parsed.data.color,
+    })
+    .select()
+    .single();
 
   if (error) return { error: error.message };
   revalidatePath("/subjects");
   revalidatePath("/dashboard");
-  return { error: null };
+  return { error: null, subject: data };
 }
 
 export async function updateSubjectAction(id: string, input: unknown): Promise<ActionResult> {
