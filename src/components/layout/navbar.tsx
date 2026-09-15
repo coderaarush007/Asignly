@@ -17,16 +17,16 @@ export function Navbar({ profile, email }: { profile: Profile | null; email: str
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-surface/85 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-4 px-4 lg:h-[72px] lg:px-8">
+      <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-2 px-4 lg:h-[72px] lg:gap-4 lg:px-8">
         <Link href="/dashboard" className="flex shrink-0 items-center gap-2">
           <Image src="/icons/icon-192.png" alt="" width={30} height={30} className="rounded-[8px]" />
           <span className="hidden text-[15px] font-bold tracking-tight text-text sm:inline">Assignment.</span>
-          <span className="hidden rounded-full bg-primary-tint px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary md:inline">
+          <span className="hidden rounded-full bg-primary-tint px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary xl:inline">
             Focus Desk
           </span>
         </Link>
 
-        <nav aria-label="Main" className="hidden flex-1 items-center justify-center gap-1 lg:flex">
+        <nav aria-label="Main" className="hidden flex-1 items-center justify-center gap-0.5 lg:flex xl:gap-1">
           {mainNav.map((item) => {
             const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
             return (
@@ -35,7 +35,7 @@ export function Navbar({ profile, email }: { profile: Profile | null; email: str
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "rounded-lg px-3 py-2 text-[13px] font-semibold whitespace-nowrap transition-colors",
+                  "rounded-lg px-2.5 py-2 text-[13px] font-semibold whitespace-nowrap transition-colors xl:px-3.5",
                   active ? "bg-primary-tint text-primary" : "text-text-secondary hover:bg-surface-hover hover:text-text",
                 )}
               >
@@ -45,11 +45,18 @@ export function Navbar({ profile, email }: { profile: Profile | null; email: str
           })}
         </nav>
 
-        <div className="ml-auto flex items-center gap-2 lg:ml-0">
-          <div className="hidden items-center gap-2 lg:flex">
-            <OnlineStatus />
+        <div className="ml-auto flex items-center gap-1.5 lg:ml-0 xl:gap-2">
+          <div className="hidden items-center gap-1.5 lg:flex xl:gap-2">
+            <div className="hidden xl:block">
+              <OnlineStatus />
+            </div>
             <ThemeToggle />
-            <AddAssignmentButton className="ml-1" />
+            <div className="xl:hidden">
+              <AddAssignmentButton iconOnly />
+            </div>
+            <div className="hidden xl:block">
+              <AddAssignmentButton />
+            </div>
           </div>
           <div className="flex items-center gap-1.5 lg:hidden">
             <AddAssignmentButton iconOnly />
