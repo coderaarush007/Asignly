@@ -2,8 +2,14 @@
 
 import { Sparkles } from "lucide-react";
 import { SettingsSection, SettingsRow } from "@/components/settings/settings-section";
-import { Select } from "@/components/ui/field";
+import { Select } from "@/components/ui/select";
 import { useLocalSetting } from "@/lib/hooks/use-local-setting";
+
+const PRIORITY_OPTIONS = [
+  { value: "low", label: "Low", swatch: "var(--color-text-muted)" },
+  { value: "medium", label: "Medium", swatch: "var(--color-warning)" },
+  { value: "high", label: "High", swatch: "var(--color-danger)" },
+];
 
 export function AiPreferencesSection() {
   const [defaultPriority, setDefaultPriority] = useLocalSetting<"low" | "medium" | "high">(
@@ -23,13 +29,11 @@ export function AiPreferencesSection() {
         control={
           <Select
             value={defaultPriority}
-            onChange={(e) => setDefaultPriority(e.target.value as "low" | "medium" | "high")}
+            onChange={(value) => setDefaultPriority(value as "low" | "medium" | "high")}
+            options={PRIORITY_OPTIONS}
+            aria-label="Default priority"
             className="w-32"
-          >
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </Select>
+          />
         }
       />
     </SettingsSection>

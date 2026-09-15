@@ -7,7 +7,7 @@ import { Input, Label, FieldError } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import { updateProfileAction } from "@/lib/db/profile.actions";
 
-export function ProfileForm({ fullName }: { fullName: string }) {
+export function ProfileForm({ fullName, email }: { fullName: string; email: string }) {
   const router = useRouter();
   const [name, setName] = useState(fullName);
   const [error, setError] = useState<string | null>(null);
@@ -33,6 +33,10 @@ export function ProfileForm({ fullName }: { fullName: string }) {
         <Label htmlFor="fullName">Full name</Label>
         <Input id="fullName" value={name} onChange={(e) => setName(e.target.value)} required />
         <FieldError>{error ?? undefined}</FieldError>
+      </div>
+      <div>
+        <Label htmlFor="accountEmail">Account email</Label>
+        <Input id="accountEmail" value={email} disabled readOnly />
       </div>
       <Button type="submit" loading={pending}>
         Save changes

@@ -7,7 +7,15 @@ import { AddAssignmentDialog } from "@/components/assignments/add-assignment-dia
 import type { DialogHandle } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 
-export function AddAssignmentButton({ fab, className }: { fab?: boolean; className?: string }) {
+export function AddAssignmentButton({
+  fab,
+  iconOnly,
+  className,
+}: {
+  fab?: boolean;
+  iconOnly?: boolean;
+  className?: string;
+}) {
   const dialogRef = useRef<DialogHandle>(null);
 
   return (
@@ -23,6 +31,18 @@ export function AddAssignmentButton({ fab, className }: { fab?: boolean; classNa
           )}
         >
           <Plus className="size-6" aria-hidden />
+        </button>
+      ) : iconOnly ? (
+        <button
+          type="button"
+          aria-label="Add assignment"
+          onClick={() => dialogRef.current?.show()}
+          className={cn(
+            "flex size-9 items-center justify-center rounded-lg bg-primary text-white transition-colors hover:bg-primary-hover",
+            className,
+          )}
+        >
+          <Plus className="size-[18px]" aria-hidden />
         </button>
       ) : (
         <Button onClick={() => dialogRef.current?.show()} className={className}>

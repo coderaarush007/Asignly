@@ -1,14 +1,19 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { assignmentFormSchema, type AssignmentFormValues } from "@/lib/validation/assignment";
-import { Input, Label, Select, Textarea, FieldError } from "@/components/ui/field";
+import { Input, Label, Textarea, FieldError } from "@/components/ui/field";
+import { Select } from "@/components/ui/select";
+import { DatePicker } from "@/components/ui/date-picker";
+import { TimePicker } from "@/components/ui/time-picker";
 import { Button } from "@/components/ui/button";
+import { EmptyState } from "@/components/ui/empty-state";
 import type { Subject } from "@/lib/types";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
+import { BookOpen } from "lucide-react";
 
 interface AssignmentFormProps {
   subjects: Subject[];
@@ -18,6 +23,12 @@ interface AssignmentFormProps {
   successMessage: string;
   onCancelHref?: string;
 }
+
+const PRIORITY_OPTIONS = [
+  { value: "low", label: "Low", swatch: "var(--color-text-muted)" },
+  { value: "medium", label: "Medium", swatch: "var(--color-warning)" },
+  { value: "high", label: "High", swatch: "var(--color-danger)" },
+];
 
 export function AssignmentForm({
   subjects,
@@ -32,6 +43,7 @@ export function AssignmentForm({
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors, isSubmitting },
   } = useForm<AssignmentFormValues>({
     resolver: zodResolver(assignmentFormSchema),
@@ -47,6 +59,8 @@ export function AssignmentForm({
     },
   });
 
+  const subjectOptions = subjects.map((s) => ({ value: s.id, label: s.name, swatch: s.color }));
+
   async function submit(values: AssignmentFormValues) {
     setFormError(null);
     const result = await onSubmit(values);
@@ -61,15 +75,12 @@ export function AssignmentForm({
 
   if (subjects.length === 0) {
     return (
-      <div className="rounded-2xl border border-dashed border-border p-6 text-center">
-        <p className="text-sm font-semibold text-text">Add a subject first</p>
-        <p className="mt-1 text-sm text-text-secondary">
-          Assignments need a subject. Create one, then come back here.
-        </p>
-        <Button className="mt-4" onClick={() => router.push("/subjects")}>
-          Go to Subjects
-        </Button>
-      </div>
+      <EmptyState
+        icon={BookOpen}
+        title="No subjects yet"
+        description="Assignments need a subject. Create one, then come back here."
+        action={<Button onClick={() => router.push("/subjects")}>Create a subject</Button>}
+      />
     );
   }
 
@@ -84,22 +95,37 @@ export function AssignmentForm({
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         <div>
           <Label htmlFor="subjectId">Subject</Label>
-          <Select id="subjectId" {...register("subjectId")}>
-            {subjects.map((s) => (
-              <option key={s.id} value={s.id}>
-                {s.name}
-              </option>
-            ))}
-          </Select>
+          <Controller
+            name="subjectId"
+            control={control}
+            render={({ field }) => (
+              <Select
+                id="subjectId"
+                aria-label="Subject"
+                value={field.value}
+                onChange={field.onChange}
+                options={subjectOptions}
+                placeholder="Choose a subject"
+              />
+            )}
+          />
           <FieldError>{errors.subjectId?.message}</FieldError>
         </div>
         <div>
           <Label htmlFor="priority">Priority</Label>
-          <Select id="priority" {...register("priority")}>
-            <option value="low">Low</option>
-            <option value="medium">Medium</option>
-            <option value="high">High</option>
-          </Select>
+          <Controller
+            name="priority"
+            control={control}
+            render={({ field }) => (
+              <Select
+                id="priority"
+                aria-label="Priority"
+                value={field.value}
+                onChange={field.onChange}
+                options={PRIORITY_OPTIONS}
+              />
+            )}
+          />
         </div>
       </div>
 
@@ -112,11 +138,23 @@ export function AssignmentForm({
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
         <div>
           <Label htmlFor="dueDate">Due date</Label>
-          <Input id="dueDate" type="date" {...register("dueDate")} />
+          <Controller
+            name="dueDate"
+            control={control}
+            render={({ field }) => (
+              <DatePicker id="dueDate" aria-label="Due date" value={field.value ?? ""} onChange={field.onChange} />
+            )}
+          />
         </div>
         <div>
           <Label htmlFor="dueTime">Due time</Label>
-          <Input id="dueTime" type="time" {...register("dueTime")} />
+          <Controller
+            name="dueTime"
+            control={control}
+            render={({ field }) => (
+              <TimePicker id="dueTime" aria-label="Due time" value={field.value ?? ""} onChange={field.onChange} />
+            )}
+          />
         </div>
         <div>
           <Label htmlFor="estimatedMinutes">Est. time (min)</Label>

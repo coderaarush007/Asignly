@@ -1,11 +1,6 @@
 import { cn } from "@/lib/utils";
 import { forwardRef } from "react";
-import type {
-  InputHTMLAttributes,
-  LabelHTMLAttributes,
-  SelectHTMLAttributes,
-  TextareaHTMLAttributes,
-} from "react";
+import type { InputHTMLAttributes, LabelHTMLAttributes, TextareaHTMLAttributes } from "react";
 
 const controlClasses =
   "w-full rounded-[10px] border border-border bg-surface px-3 py-2 text-sm text-text placeholder:text-text-muted outline-none transition-colors focus:border-primary focus:ring-4 focus:ring-[var(--color-focus-ring)] disabled:opacity-50";
@@ -35,15 +30,6 @@ export const Textarea = forwardRef<
   <textarea ref={ref} className={cn(controlClasses, "min-h-24 resize-y", className)} {...props} />
 ));
 Textarea.displayName = "Textarea";
-
-export const Select = forwardRef<HTMLSelectElement, SelectHTMLAttributes<HTMLSelectElement>>(
-  ({ className, children, ...props }, ref) => (
-    <select ref={ref} className={cn(controlClasses, "pr-8", className)} {...props}>
-      {children}
-    </select>
-  ),
-);
-Select.displayName = "Select";
 
 export function FieldError({ children }: { children?: string }) {
   if (!children) return null;

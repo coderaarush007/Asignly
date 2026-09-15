@@ -2,9 +2,17 @@
 
 import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import { Search } from "lucide-react";
-import { Input, Select } from "@/components/ui/field";
+import { Input } from "@/components/ui/field";
+import { Select } from "@/components/ui/select";
 import type { Subject } from "@/lib/types";
 import { useEffect, useRef, useState } from "react";
+
+const PRIORITY_FILTER_OPTIONS = [
+  { value: "", label: "All Priorities" },
+  { value: "high", label: "High", swatch: "var(--color-danger)" },
+  { value: "medium", label: "Medium", swatch: "var(--color-warning)" },
+  { value: "low", label: "Low", swatch: "var(--color-text-muted)" },
+];
 
 export function FiltersBar({ subjects }: { subjects: Subject[] }) {
   const router = useRouter();
@@ -12,6 +20,7 @@ export function FiltersBar({ subjects }: { subjects: Subject[] }) {
   const searchParams = useSearchParams();
   const [search, setSearch] = useState(searchParams.get("q") ?? "");
   const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const subjectOptions = [{ value: "", label: "All Subjects" }, ...subjects.map((s) => ({ value: s.id, label: s.name, swatch: s.color }))];
 
   function updateParam(key: string, value: string) {
     const params = new URLSearchParams(searchParams.toString());
@@ -42,29 +51,19 @@ export function FiltersBar({ subjects }: { subjects: Subject[] }) {
         />
       </div>
       <Select
-        defaultValue={searchParams.get("subject") ?? ""}
-        onChange={(e) => updateParam("subject", e.target.value)}
+        value={searchParams.get("subject") ?? ""}
+        onChange={(value) => updateParam("subject", value)}
+        options={subjectOptions}
         className="sm:w-44"
         aria-label="Filter by subject"
-      >
-        <option value="">All Subjects</option>
-        {subjects.map((s) => (
-          <option key={s.id} value={s.id}>
-            {s.name}
-          </option>
-        ))}
-      </Select>
+      />
       <Select
-        defaultValue={searchParams.get("priority") ?? ""}
-        onChange={(e) => updateParam("priority", e.target.value)}
+        value={searchParams.get("priority") ?? ""}
+        onChange={(value) => updateParam("priority", value)}
+        options={PRIORITY_FILTER_OPTIONS}
         className="sm:w-40"
         aria-label="Filter by priority"
-      >
-        <option value="">All Priorities</option>
-        <option value="high">High</option>
-        <option value="medium">Medium</option>
-        <option value="low">Low</option>
-      </Select>
+      />
     </div>
   );
 }
