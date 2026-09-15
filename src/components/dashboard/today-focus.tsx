@@ -36,7 +36,7 @@ export function TodayFocus({ assignment }: { assignment: AssignmentWithRelations
       <p className={"mb-4 text-xs font-semibold " + (overdue ? "text-danger" : "text-text-secondary")}>
         {formatDueDate(assignment.due_at)}
       </p>
-      <ProgressBar value={assignment.progress} className="mb-4" />
+      <ProgressBar value={assignment.progress} trackClassName="mb-4" />
       <Link
         href={`/assignments/${assignment.id}`}
         className="flex items-center justify-center gap-1.5 rounded-[10px] bg-primary px-4 py-2 text-sm font-semibold text-white transition-colors hover:bg-primary-hover"
