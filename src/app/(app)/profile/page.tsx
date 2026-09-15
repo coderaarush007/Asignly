@@ -9,7 +9,7 @@ import { isOverdue } from "@/lib/utils";
 import { ClipboardList, Clock3, CheckCircle2, AlertTriangle } from "lucide-react";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Profile — Assignment." };
+export const metadata: Metadata = { title: "Profile — Asignly" };
 
 export default async function ProfilePage() {
   const { profile, userId } = await getCurrentProfile();

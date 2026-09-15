@@ -12,7 +12,7 @@ export function PwaSection() {
     <SettingsSection
       icon={Download}
       title="Install app"
-      description="Add Assignment. to your device for quick, full-screen access."
+      description="Add Asignly to your device for quick, full-screen access."
     >
       {installed ? (
         <div className="flex items-center gap-2 text-sm font-semibold text-success">
@@ -22,7 +22,7 @@ export function PwaSection() {
       ) : canInstall ? (
         <Button onClick={promptInstall}>
           <Download className="size-4" aria-hidden />
-          Install Assignment.
+          Install Asignly
         </Button>
       ) : (
         <p className="text-xs text-text-secondary">

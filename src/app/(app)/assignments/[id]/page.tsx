@@ -18,7 +18,7 @@ interface PageProps {
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { id } = await params;
   const assignment = await getAssignment(id);
-  return { title: assignment ? `${assignment.title} — Assignment.` : "Assignment not found" };
+  return { title: assignment ? `${assignment.title} — Asignly` : "Assignment not found" };
 }
 
 export default async function AssignmentDetailPage({ params }: PageProps) {

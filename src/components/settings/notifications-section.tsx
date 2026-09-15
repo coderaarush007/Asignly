@@ -45,7 +45,7 @@ export function NotificationsSection() {
         description={
           permission === "unsupported"
             ? "Not supported in this browser."
-            : "Shown while Assignment. is open in a tab."
+            : "Shown while Asignly is open in a tab."
         }
         control={
           <Switch

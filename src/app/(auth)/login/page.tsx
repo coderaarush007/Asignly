@@ -2,7 +2,7 @@ import { LoginForm } from "@/components/auth/login-form";
 import Link from "next/link";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Log in — Assignment." };
+export const metadata: Metadata = { title: "Log in — Asignly" };
 
 export default async function LoginPage({
   searchParams,

@@ -9,7 +9,7 @@ import { ListChecks } from "lucide-react";
 import { isOverdue } from "@/lib/utils";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Assignments — Assignment." };
+export const metadata: Metadata = { title: "Assignments — Asignly" };
 
 interface PageProps {
   searchParams: Promise<{ q?: string; subject?: string; priority?: string; status?: string }>;

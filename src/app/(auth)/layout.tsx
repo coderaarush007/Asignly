@@ -13,7 +13,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
             className="rounded-[12px]"
           />
           <div>
-            <h1 className="text-xl font-bold tracking-tight text-text">Assignment.</h1>
+            <h1 className="text-xl font-bold tracking-tight text-text">Asignly</h1>
             <p className="text-[11px] font-bold uppercase tracking-wider text-primary">
               Focus Desk
             </p>

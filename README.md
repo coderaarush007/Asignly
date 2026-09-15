@@ -1,4 +1,4 @@
-# Assignment. — Focus Desk
+# Asignly — Focus Desk
 
 A personal assignment tracker for college students. Capture assignments manually or by scanning a
 screenshot with AI, track them on a dashboard/calendar/subjects view, and watch real analytics build

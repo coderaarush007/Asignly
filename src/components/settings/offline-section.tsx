@@ -9,7 +9,7 @@ export function OfflineSection() {
   const online = useOnlineStatus();
 
   return (
-    <SettingsSection icon={WifiOff} title="Offline mode" description="How Assignment. behaves without a connection.">
+    <SettingsSection icon={WifiOff} title="Offline mode" description="How Asignly behaves without a connection.">
       <SettingsRow
         label="Connection status"
         control={
@@ -24,7 +24,7 @@ export function OfflineSection() {
         }
       />
       <p className="mt-2 text-xs leading-relaxed text-text-secondary">
-        Assignment. caches its app shell so it opens quickly and shows a clear offline page when you have
+        Asignly caches its app shell so it opens quickly and shows a clear offline page when you have
         no connection. Reading and editing assignments requires a connection — changes made offline are
         not queued or synced in this version.
       </p>

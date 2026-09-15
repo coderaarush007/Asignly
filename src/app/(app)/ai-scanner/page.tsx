@@ -2,7 +2,7 @@ import { getSubjects } from "@/lib/db/subjects.queries";
 import { ScannerFlow } from "@/components/scanner/scanner-flow";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "AI Scanner — Assignment." };
+export const metadata: Metadata = { title: "AI Scanner — Asignly" };
 
 export default async function AiScannerPage() {
   const subjects = await getSubjects();

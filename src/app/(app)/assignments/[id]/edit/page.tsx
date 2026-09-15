@@ -5,7 +5,7 @@ import { updateAssignmentAction } from "@/lib/db/assignments.actions";
 import { AssignmentForm } from "@/components/assignments/assignment-form";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Edit assignment — Assignment." };
+export const metadata: Metadata = { title: "Edit assignment — Asignly" };
 
 interface PageProps {
   params: Promise<{ id: string }>;

@@ -18,7 +18,7 @@ import { SubjectBadge } from "@/components/ui/badge";
 import { formatDueDate, greetingForTime, firstName } from "@/lib/utils";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Dashboard — Assignment." };
+export const metadata: Metadata = { title: "Dashboard — Asignly" };
 
 export default async function DashboardPage() {
   const [assignments, { profile }] = await Promise.all([getAssignments(), getCurrentProfile()]);

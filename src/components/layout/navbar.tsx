@@ -20,7 +20,7 @@ export function Navbar({ profile, email }: { profile: Profile | null; email: str
       <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-2 rounded-full border border-glass-border bg-glass-surface px-3 shadow-glass backdrop-blur-2xl backdrop-saturate-150 lg:h-[60px] lg:gap-4 lg:px-4">
         <Link href="/dashboard" className="flex shrink-0 items-center gap-2 pl-1">
           <Image src="/icons/icon-192.png" alt="" width={30} height={30} className="rounded-[8px]" />
-          <span className="hidden text-[15px] font-bold tracking-tight text-text sm:inline">Assignment.</span>
+          <span className="hidden text-[15px] font-bold tracking-tight text-text sm:inline">Asignly</span>
           <span className="hidden rounded-full bg-primary-tint px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary xl:inline">
             Focus Desk
           </span>

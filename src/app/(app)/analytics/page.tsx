@@ -8,7 +8,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { TrendingUp, CheckCircle2, Hourglass, Loader, AlertTriangle } from "lucide-react";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Analytics — Assignment." };
+export const metadata: Metadata = { title: "Analytics — Asignly" };
 
 export default async function AnalyticsPage() {
   const [assignments, subjects] = await Promise.all([getAssignments(), getSubjects()]);

@@ -20,7 +20,7 @@ export function AppearanceSection() {
   useEffect(() => setMounted(true), []);
 
   return (
-    <SettingsSection icon={Palette} title="Appearance" description="Choose how Assignment. looks.">
+    <SettingsSection icon={Palette} title="Appearance" description="Choose how Asignly looks.">
       <div className="grid grid-cols-3 gap-2">
         {OPTIONS.map((opt) => {
           const Icon = opt.icon;

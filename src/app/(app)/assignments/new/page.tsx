@@ -3,7 +3,7 @@ import { createAssignmentAction } from "@/lib/db/assignments.actions";
 import { AssignmentForm } from "@/components/assignments/assignment-form";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Add assignment — Assignment." };
+export const metadata: Metadata = { title: "Add assignment — Asignly" };
 
 export default async function NewAssignmentPage() {
   const subjects = await getSubjects();

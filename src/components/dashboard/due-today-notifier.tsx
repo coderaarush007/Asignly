@@ -15,7 +15,7 @@ export function DueTodayNotifier({ dueTodayCount }: { dueTodayCount: number }) {
     if (typeof Notification === "undefined" || Notification.permission !== "granted") return;
     if (sessionStorage.getItem("due-today-notified")) return;
 
-    new Notification("Assignment.", {
+    new Notification("Asignly", {
       body: `You have ${dueTodayCount} assignment${dueTodayCount === 1 ? "" : "s"} due today.`,
       icon: "/icons/icon-192.png",
     });

@@ -12,13 +12,13 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Assignment. — Focus Desk",
+  title: "Asignly — Focus Desk",
   description: "A personal assignment tracker built to capture, organize, and finish college coursework.",
   manifest: "/manifest.webmanifest",
   appleWebApp: {
     capable: true,
     statusBarStyle: "default",
-    title: "Assignment.",
+    title: "Asignly",
   },
   icons: {
     icon: [{ url: "/icons/icon-192.png", sizes: "192x192", type: "image/png" }],

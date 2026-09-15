@@ -16,7 +16,7 @@ export function AccountActions() {
       <Card className="flex items-center justify-between gap-4 p-5">
         <div>
           <h2 className="text-sm font-bold text-text">Account</h2>
-          <p className="text-xs text-text-secondary">Sign out of Assignment. on this device.</p>
+          <p className="text-xs text-text-secondary">Sign out of Asignly on this device.</p>
         </div>
         <form action={signOutAction}>
           <Button type="submit" variant="secondary">

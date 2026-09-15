@@ -2,7 +2,7 @@ import { getAssignments } from "@/lib/db/assignments.queries";
 import { CalendarView } from "@/components/calendar/calendar-view";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Calendar — Assignment." };
+export const metadata: Metadata = { title: "Calendar — Asignly" };
 
 export default async function CalendarPage() {
   const assignments = await getAssignments();

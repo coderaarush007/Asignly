@@ -5,7 +5,7 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { BookOpen } from "lucide-react";
 import type { Metadata } from "next";
 
-export const metadata: Metadata = { title: "Subjects — Assignment." };
+export const metadata: Metadata = { title: "Subjects — Asignly" };
 
 export default async function SubjectsPage() {
   const subjects = await getSubjectsWithStats();
