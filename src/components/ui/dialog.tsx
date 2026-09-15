@@ -39,7 +39,7 @@ export const Dialog = forwardRef<DialogHandle, DialogProps>(
         ref={dialogRef}
         aria-labelledby="dialog-title"
         className={cn(
-          "m-auto w-full max-w-lg rounded-[20px] border border-border bg-surface p-0 text-text shadow-overlay backdrop:bg-slate-950/40 backdrop:backdrop-blur-sm",
+          "m-auto w-full max-w-lg rounded-[20px] border border-border bg-surface p-0 text-text shadow-overlay backdrop:bg-black/40 backdrop:backdrop-blur-sm",
           className,
         )}
         onClick={(e) => {

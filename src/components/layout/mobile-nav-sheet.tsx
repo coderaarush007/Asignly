@@ -51,7 +51,7 @@ export function MobileNavSheet({ profile, email }: { profile: Profile | null; em
         open &&
         createPortal(
           <div className="fixed inset-0 z-[60] lg:hidden" role="dialog" aria-modal="true" aria-label="Navigation">
-            <div className="absolute inset-0 bg-slate-950/40 backdrop-blur-sm" onClick={() => setOpen(false)} />
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setOpen(false)} />
             <div className="absolute inset-y-0 right-0 flex w-[85vw] max-w-xs flex-col bg-surface shadow-overlay">
               <div className="flex h-16 shrink-0 items-center justify-between border-b border-border px-4">
                 <div className="flex items-center gap-2.5 min-w-0">
