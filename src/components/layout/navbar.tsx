@@ -25,7 +25,13 @@ export function Navbar({ profile, email }: { profile: Profile | null; email: str
   const finePointer = useFinePointer();
   const [hover, setHover] = useState<HoverRect>({ left: 0, width: 0, visible: false });
 
-  function handleItemEnter(event: React.MouseEvent<HTMLAnchorElement>) {
+  function handleItemEnter(event: React.MouseEvent<HTMLAnchorElement>, active: boolean) {
+    // The active item already renders its own persistent pill, so the shared
+    // glass surface stays hidden over it instead of stacking a second one.
+    if (active) {
+      setHover((h) => (h.visible ? { ...h, visible: false } : h));
+      return;
+    }
     const el = event.currentTarget;
     setHover({ left: el.offsetLeft, width: el.offsetWidth, visible: true });
   }
@@ -55,7 +61,7 @@ export function Navbar({ profile, email }: { profile: Profile | null; email: str
               aria-hidden
               style={{ transform: `translateX(${hover.left}px)`, width: hover.width }}
               className={cn(
-                "pointer-events-none absolute inset-y-1 left-0 rounded-full border border-primary/10 bg-white/50 opacity-0 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.55),0_4px_14px_-6px_rgba(15,23,42,0.16)] backdrop-blur-md transition-[transform,width,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none dark:border-primary/15 dark:bg-white/[0.06] dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05),0_4px_14px_-6px_rgba(0,0,0,0.45)]",
+                "pointer-events-none absolute inset-y-1 left-0 rounded-full border border-[rgba(15,23,42,0.12)] bg-glass-hover opacity-0 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.75),0_1px_3px_0_rgba(15,23,42,0.08),0_10px_22px_-10px_rgba(15,23,42,0.22)] backdrop-blur-md ring-1 ring-inset ring-primary/[0.06] transition-[transform,width,opacity] duration-300 ease-[cubic-bezier(0.22,1,0.36,1)] motion-reduce:transition-none dark:border-primary/15 dark:shadow-[inset_0_1px_0_0_rgba(255,255,255,0.05),0_4px_14px_-6px_rgba(0,0,0,0.45)] dark:ring-0",
                 hover.visible && "opacity-100",
               )}
             />
@@ -67,11 +73,11 @@ export function Navbar({ profile, email }: { profile: Profile | null; email: str
                 key={item.href}
                 href={item.href}
                 aria-current={active ? "page" : undefined}
-                onMouseEnter={finePointer ? handleItemEnter : undefined}
+                onMouseEnter={finePointer ? (event) => handleItemEnter(event, active) : undefined}
                 className={cn(
                   "relative z-10 rounded-full px-2.5 py-2 text-[13px] font-semibold whitespace-nowrap transition-colors duration-200 ease-out xl:px-3.5",
                   active
-                    ? "bg-primary/10 text-primary ring-1 ring-inset ring-primary/15"
+                    ? "bg-primary/10 text-primary ring-1 ring-inset ring-primary/15 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.5)] hover:bg-primary/[0.16] dark:shadow-none"
                     : "text-text-secondary hover:text-text",
                 )}
               >
