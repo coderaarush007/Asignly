@@ -16,9 +16,9 @@ export function Navbar({ profile, email }: { profile: Profile | null; email: str
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-surface/85 backdrop-blur-xl">
-      <div className="mx-auto flex h-16 max-w-[1400px] items-center gap-2 px-4 lg:h-[72px] lg:gap-4 lg:px-8">
-        <Link href="/dashboard" className="flex shrink-0 items-center gap-2">
+    <header className="sticky top-0 z-40 px-3 pt-3 pb-2 sm:px-4 lg:px-6 lg:pt-4">
+      <div className="mx-auto flex h-14 max-w-[1400px] items-center gap-2 rounded-full border border-glass-border bg-glass-surface px-3 shadow-glass backdrop-blur-2xl backdrop-saturate-150 lg:h-[60px] lg:gap-4 lg:px-4">
+        <Link href="/dashboard" className="flex shrink-0 items-center gap-2 pl-1">
           <Image src="/icons/icon-192.png" alt="" width={30} height={30} className="rounded-[8px]" />
           <span className="hidden text-[15px] font-bold tracking-tight text-text sm:inline">Assignment.</span>
           <span className="hidden rounded-full bg-primary-tint px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-primary xl:inline">
@@ -35,8 +35,10 @@ export function Navbar({ profile, email }: { profile: Profile | null; email: str
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "rounded-lg px-2.5 py-2 text-[13px] font-semibold whitespace-nowrap transition-colors xl:px-3.5",
-                  active ? "bg-primary-tint text-primary" : "text-text-secondary hover:bg-surface-hover hover:text-text",
+                  "rounded-full px-2.5 py-2 text-[13px] font-semibold whitespace-nowrap transition-all duration-200 ease-out xl:px-3.5",
+                  active
+                    ? "bg-primary/10 text-primary ring-1 ring-inset ring-primary/15"
+                    : "text-text-secondary hover:-translate-y-px hover:bg-glass-hover hover:text-text",
                 )}
               >
                 {item.label}
@@ -59,6 +61,7 @@ export function Navbar({ profile, email }: { profile: Profile | null; email: str
             </div>
           </div>
           <div className="flex items-center gap-1.5 lg:hidden">
+            <ThemeToggle />
             <AddAssignmentButton iconOnly />
             <MobileNavSheet profile={profile} email={email} />
           </div>

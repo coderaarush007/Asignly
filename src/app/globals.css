@@ -28,6 +28,10 @@
   --shadow-card: 0px 1px 2px rgba(15, 23, 42, 0.04), 0px 4px 8px -2px rgba(15, 23, 42, 0.02);
   --shadow-hover: 0px 4px 12px -2px rgba(15, 23, 42, 0.08), 0px 2px 4px rgba(15, 23, 42, 0.04);
   --shadow-overlay: 0px 12px 32px -4px rgba(15, 23, 42, 0.16), 0px 4px 8px -2px rgba(15, 23, 42, 0.06);
+  --color-glass-surface: rgba(255, 253, 250, 0.72);
+  --color-glass-border: rgba(41, 37, 36, 0.08);
+  --color-glass-hover: rgba(41, 37, 36, 0.045);
+  --shadow-glass: 0px 1px 1px rgba(15, 23, 42, 0.03), 0px 14px 28px -16px rgba(15, 23, 42, 0.22);
 }
 
 .dark {
@@ -56,6 +60,10 @@
   --shadow-card: 0px 1px 2px rgba(0, 0, 0, 0.24), 0px 4px 8px -2px rgba(0, 0, 0, 0.16);
   --shadow-hover: 0px 4px 12px -2px rgba(0, 0, 0, 0.32), 0px 2px 4px rgba(0, 0, 0, 0.2);
   --shadow-overlay: 0px 12px 32px -4px rgba(0, 0, 0, 0.48), 0px 4px 8px -2px rgba(0, 0, 0, 0.24);
+  --color-glass-surface: rgba(26, 23, 21, 0.58);
+  --color-glass-border: rgba(255, 255, 255, 0.09);
+  --color-glass-hover: rgba(255, 255, 255, 0.06);
+  --shadow-glass: 0px 1px 1px rgba(0, 0, 0, 0.3), 0px 16px 32px -16px rgba(0, 0, 0, 0.6);
 }
 
 @theme inline {
@@ -82,6 +90,9 @@
   --color-success-tint: var(--color-success-tint);
   --color-info: var(--color-info);
   --color-info-tint: var(--color-info-tint);
+  --color-glass-surface: var(--color-glass-surface);
+  --color-glass-border: var(--color-glass-border);
+  --color-glass-hover: var(--color-glass-hover);
 
   --radius-control: 0.625rem;
   --radius-card: 1rem;
@@ -128,6 +139,9 @@
   }
   .shadow-overlay {
     box-shadow: var(--shadow-overlay);
+  }
+  .shadow-glass {
+    box-shadow: var(--shadow-glass);
   }
   .no-scrollbar::-webkit-scrollbar {
     display: none;
